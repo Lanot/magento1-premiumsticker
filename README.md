@@ -1,4 +1,4 @@
-# magento1-premiumsticker
+# Lanot_PremiumSticker
 
 Flexible stickers (labels) manager for product images.
 Extension attracts customer attention on your products.
