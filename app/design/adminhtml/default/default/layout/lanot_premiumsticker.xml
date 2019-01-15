@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento backend layout
+ *
+ * @author Lanot
+ */
+-->
+<layout>
+<!-- ADMIN PREMIUM STICKERS -->
+
+    <!-- STICKER EDIT PAGE -->
+    <!-- MAIN DATA -->
+    <lanot_easysticker_adminhtml_sticker_edit>
+        <update handle="editor"/>
+        <reference name="head">
+            <action method="setCanLoadExtJs"><flag>1</flag></action>
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+        </reference>
+        <reference name="js">
+            <block type="core/template" template="lanot/rule/js.phtml" />
+        </reference>
+        <reference name="sticker_edit_tabs">
+            <action method="addTab">
+                <name>sticker_catalog_products</name>
+                <block>lanot_premiumsticker/adminhtml_sticker_edit_tab_products</block>
+            </action>
+            <!-- RULE TABS-->
+            <action method="addTab">
+                <name>premiumsticker_rule</name>
+                <block>lanot_premiumsticker/adminhtml_sticker_edit_tab_rule</block>
+            </action>
+            <action method="addTab">
+                <name>premiumsticker_conditions</name>
+                <block>lanot_premiumsticker/adminhtml_sticker_edit_tab_conditions</block>
+            </action>
+            <action method="addTab">
+                <name>premiumsticker_products_auto</name>
+                <block>lanot_premiumsticker/adminhtml_sticker_edit_tab_autoproducts</block>
+            </action>
+            <!--/RULE TABS-->
+        </reference>
+    </lanot_easysticker_adminhtml_sticker_edit>
+    <!-- MAIN DATA -->
+
+    <!-- PRODUCTS -->
+    <lanot_easysticker_adminhtml_sticker_productsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="lanot_premiumsticker/adminhtml_sticker_edit_tab_products_grid" name="sticker.edit.tab.product.grid"/>
+            <block type="adminhtml/widget_grid_serializer" name="sticker_grid_serializer_products">
+                <reference name="sticker_grid_serializer_products">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>sticker.edit.tab.product.grid</grid_block_name>
+                        <data_callback>getSelectedLinks</data_callback>
+                        <hidden_input_name>sticker_products</hidden_input_name>
+                        <reload_param_name>products_in_selected</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </lanot_easysticker_adminhtml_sticker_productsgrid>
+
+    <lanot_easysticker_adminhtml_sticker_productsgridonly>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="lanot_premiumsticker/adminhtml_sticker_edit_tab_products_grid" name="sticker.edit.tab.product.grid"/>
+        </block>
+    </lanot_easysticker_adminhtml_sticker_productsgridonly>
+    <!-- /PRODUCTS -->
+    <!--/STICKER EDIT PAGE -->
+
+    <!-- PRODUCTS -->
+    <lanot_easysticker_adminhtml_sticker_autoproductsgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="lanot_premiumsticker/adminhtml_sticker_edit_tab_autoproducts_grid" name="premium.sticker.edit.tab.autoproducts.grid"/>
+        </block>
+    </lanot_easysticker_adminhtml_sticker_autoproductsgrid>
+    <!-- /PRODUCTS -->
+
+
+    <!-- DYNAMIC STICKERS -->
+    <lanot_premiumsticker_adminhtml_sticker_dynamic_index>
+        <reference name="content">
+            <block type="lanot_premiumsticker/adminhtml_sticker_dynamic" name="premium_sticker" />
+        </reference>
+    </lanot_premiumsticker_adminhtml_sticker_dynamic_index>
+
+    <lanot_premiumsticker_adminhtml_sticker_dynamic_grid>
+        <block type="lanot_premiumsticker/adminhtml_sticker_dynamic_grid" name="root"/>
+    </lanot_premiumsticker_adminhtml_sticker_dynamic_grid>
+
+    <lanot_premiumsticker_adminhtml_sticker_dynamic_new>
+        <update handle="lanot_premiumsticker_adminhtml_sticker_dynamic_edit" />
+    </lanot_premiumsticker_adminhtml_sticker_dynamic_new>
+
+    <lanot_premiumsticker_adminhtml_sticker_dynamic_edit>
+        <update handle="lanot_lightbox"/>
+        <reference name="content">
+            <block type="lanot_premiumsticker/adminhtml_sticker_dynamic_edit" name="premium_sticker_edit" />
+        </reference>
+        <reference name="left">
+            <block type="lanot_easysticker/adminhtml_sticker_edit_tabs" name="sticker_edit_tabs">
+                <action method="addTab">
+                    <name>sticker_main_info</name>
+                    <block>lanot_easysticker/adminhtml_sticker_edit_tab_main</block>
+                </action>
+            </block>
+        </reference>
+    </lanot_premiumsticker_adminhtml_sticker_dynamic_edit>
+    <!-- /DYNAMIC STICKERS -->
+
+<!-- ADMIN PREMIUM STICKERS -->
+</layout>
